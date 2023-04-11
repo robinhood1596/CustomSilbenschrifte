@@ -5,7 +5,7 @@ Konvertiert beliebigen Text in Silbenschrift, d.h. Silben werden farblich abwech
 
 # How-To
 
-Runterladen, Doppelklick auf ConverterFunktional oder ConverterFunktionalmitSonderzeichen. 
+Runterladen (Code --> Download ZIP), entpacken, Doppelklick auf ConverterFunktional oder ConverterFunktionalmitSonderzeichen. 
 
 Browser sollte sich öffnen, Text in Feld eingeben, falls gewünscht Farben ändern, Convert drücken tada. Kann auch kopiert werden.
 
