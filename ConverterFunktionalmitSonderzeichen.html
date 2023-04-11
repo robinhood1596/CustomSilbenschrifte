@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+<head>
+  <title>Syllables</title>
+  <meta charset="utf-8"/>
+  
+    <style>
+    .syllable {
+      font-family: "Arial", sans-serif;
+      font-size: 16px;
+    }
+
+    .syllable1 {
+      color: black;
+    }
+
+    .syllable2 {
+      color: gray;
+    }
+
+    #input {
+	font-family: "Arial", sans-serif;
+      width: 80%;
+      max-width: 800px;
+      height: 200px;
+      border: 2px solid #ccc;
+      padding: 10px;
+      margin: 20px auto;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      resize: none;
+      overflow-x: hidden;
+    }
+
+    #output {
+      white-space: pre-wrap;
+      font-family: "Arial", sans-serif;
+      font-size: 16px;
+      width: 80%;
+      max-width: 800px;
+      border: 2px solid #ccc;
+      padding: 10px;
+      margin: 20px auto;
+    }
+    </style>
+</head>
+<body>
+
+  <div class="container">
+    <label for="input">Enter text to convert:</label>
+    <br>
+    <textarea id="input"></textarea>
+    <br>
+    <button type="button" id="convert">Convert</button>
+    <br>
+    <br>
+    <label for="output">Result:</label>
+    <br>
+    <div id="output"></div>
+	<label for="color1">Syllable color 1:</label>
+<input type="color" id="color1" value="#000000">
+<label for="color2">Syllable color 2:</label>
+<input type="color" id="color2" value="#808080">
+
+  </div>
+
+  <script src="./Hyphenopoly_Loader.js"></script>
+  <script>
+    var Separator = "•";
+    
+    Hyphenopoly.config({
+      "require": {
+        "de-x-syllable": "FORCEHYPHENOPOLY"
+      },
+      "setup": {
+        "exceptions": { "global" : " "},
+        "selectors": {
+          ".hyphenate": {
+            "hyphen": Separator,
+            "minWordLength": 3
+          }
+        }
+      }
+    });
+  </script>
+  <script src="./syllables.js"></script>
+  <script>
+ document.addEventListener('DOMContentLoaded', function() {
+
+CustomConverter = function(color1, color2) {
+  this.decorateWord = function(primarilyWord, syllables) {
+    let htmlChunk = "";
+    syllables.forEach((syllable, index) => {
+      let color = (index % 2 === 0) ? color1 : color2;
+      htmlChunk += "<span style='color:" + color + "'>" + syllable + "</span>";
+    });
+    return htmlChunk;
+  };
+
+  this.decorateOther = function(other) {
+    // replace special characters with HTML that colors them using color1
+    const specialChars = /[µ\/&%$§\^°<>|\\~#*+_={}\[\]"'();:!?,.\-\s]/
+	;
+
+    return other.replace(specialChars, "<span style='color:" + color1 + "'>$&</span>");
+  };
+};
+
+  var customConverter = new CustomConverter();
+
+  document.getElementById("convert").addEventListener("click", function() {
+  let color1 = document.getElementById("color1").value;
+  let color2 = document.getElementById("color2").value;
+  
+  Hyphenopoly.hyphenators["de-x-syllable"].then((hyphenator) => {
+    let syllableConverter = new SyllableConverter({
+      hyphenator: hyphenator,
+      textDecorator: new CustomConverter(color1, color2)
+    });
+
+    let convertedText = syllableConverter.convertText(document.getElementById("input").value);
+    document.getElementById("output").innerHTML = convertedText;
+  });
+});
+});
+
+  </script>
+
+
+
+</body>
+</html>
