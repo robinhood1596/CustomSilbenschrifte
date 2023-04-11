@@ -3,16 +3,16 @@ Das ganze basiert auf https://github.com/mnater/Hyphenopoly und https://github.c
 
 Konvertiert beliebigen Text in Silbenschrift, d.h. Silben werden farblich abwechselnd markiert. 
 
-#How-To
+# How-To
 
 Runterladen, Doppelklick auf ConverterFunktional oder ConverterFunktionalmitSonderzeichen. 
 
 Browser sollte sich öffnen, Text in Feld eingeben, falls gewünscht Farben ändern, Convert drücken tada. Kann auch kopiert werden.
 
-#Trouble-Shooting
+# Trouble-Shooting
 
 Falls kein Ergebniss kommt:
 
-in Browser-Einstellungen security.fileuri.strict_origin_policy auf false setzen (NICHT DAUERHAFT; POTENZIELLES SICHERHEITSRISIKO)
+in Browser-Einstellungen security.fileuri.strict_origin_policy auf false setzen **(NICHT DAUERHAFT; POTENZIELLES SICHERHEITSRISIKO)**
 Alternativ: Auf lokalem Server hosten oder tatsächlich auf eigener Website ... Ist aber komplizierter.
 
